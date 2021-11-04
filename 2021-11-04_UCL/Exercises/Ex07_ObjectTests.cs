@@ -23,7 +23,7 @@ namespace Exercises
             Person result = GetPerson();
 
             // Assert
-            throw new NotImplementedException();
+            result.Should().BeOfType(expected.GetType()).And.BeEquivalentTo(result);
         }
 
         [Fact]
@@ -42,7 +42,7 @@ namespace Exercises
             Machine instance = GetInstance();
 
             // Assert
-            throw new NotImplementedException();
+            instance.Should().BeEquivalentTo(expectedInstance, options => options.Excluding(su => su.Id));
         }
 
         [Fact]
@@ -58,7 +58,7 @@ namespace Exercises
             ISuperComputer computer = GetSuperComputer();
 
             // Assert
-            throw new NotImplementedException();
+            computer.Should().BeEquivalentTo(expected);
         }
 
         [Fact]
@@ -67,6 +67,7 @@ namespace Exercises
             // Arrange
             object expected = new
             {
+                
                 // Fill out the anonymous type, to match
                 // Inner.Inner.MyProperty = 42
             };
@@ -94,7 +95,7 @@ namespace Exercises
             AnnoyingClass result = GetResult();
 
             // Assert
-            throw new NotImplementedException();
+            //result.Should().BeEquivalentTo(expected, options => options.Excluding(m => m.DeclaringType));
         }
 
         [Fact]
@@ -110,7 +111,7 @@ namespace Exercises
             object mappedModel = ModelMapper.Map(dasModel);
 
             // Assert
-            throw new NotImplementedException();
+            dasModel.Should().BeEquivalentTo(mappedModel);
         }
 
         [Fact]
@@ -126,7 +127,7 @@ namespace Exercises
             object mappedModel = ModelMapper.Map(dasModel);
 
             // Assert
-            throw new NotImplementedException();
+            dasModel.Should().BeEquivalentTo(mappedModel);
         }
 
         #region Helpers
