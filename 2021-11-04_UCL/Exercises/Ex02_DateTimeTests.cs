@@ -18,7 +18,7 @@ namespace Exercises
             DateTime date = EasterSunday();
 
             // Assert
-            throw new NotImplementedException();
+            date.Should().Be(expected);
         }
 
         [Fact]
