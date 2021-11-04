@@ -67,9 +67,13 @@ namespace Exercises
             // Arrange
             object expected = new
             {
-                
-                // Fill out the anonymous type, to match
-                // Inner.Inner.MyProperty = 42
+                Inner = new
+                {
+                    Inner = new
+                    {
+                        MyProperty = 42
+                    }
+                }
             };
 
             // Act
@@ -95,7 +99,7 @@ namespace Exercises
             AnnoyingClass result = GetResult();
 
             // Assert
-            //result.Should().BeEquivalentTo(expected, options => options.Excluding(m => m.DeclaringType));
+            result.Should().BeEquivalentTo(expected, options => options.ExcludingFields().Including(ac => ac.name));
         }
 
         [Fact]
@@ -111,7 +115,7 @@ namespace Exercises
             object mappedModel = ModelMapper.Map(dasModel);
 
             // Assert
-            dasModel.Should().BeEquivalentTo(mappedModel);
+            dasModel.Should().BeEquivalentTo(mappedModel, options => options.Using<DateTime>(ctx => ctx.Subject.Should().BeCloseTo(ctx.Expectation, 1.Seconds())).WhenTypeIs<DateTime>());
         }
 
         [Fact]
@@ -127,7 +131,7 @@ namespace Exercises
             object mappedModel = ModelMapper.Map(dasModel);
 
             // Assert
-            dasModel.Should().BeEquivalentTo(mappedModel);
+            dasModel.Should().BeEquivalentTo(mappedModel, options => options.Using<DateTime>(ctx => ctx.Subject.Should().BeCloseTo(ctx.Expectation, 1.Seconds())).When(info => info.Path.EndsWith("Created")));
         }
 
         #region Helpers
