@@ -18,7 +18,7 @@ namespace Exercises
             Action act = () => subject.DoesThrow();
 
             // Assert
-            act.Should().Throw<Exception>();
+            act.Should().Throw<InvalidOperationException>();
         }
 
         [Fact]
@@ -37,7 +37,7 @@ namespace Exercises
             Action act = () => subject.DoesThrow();
 
             // Assert
-            act.Should().Throw<InvalidOperationException>().WithMessage("*foobar*").WithInnerException<DivideByZeroException>().WithMessage("*Dark Side*");
+            act.Should().Throw<InvalidOperationException>().WithMessage("*foobar*").WithInnerExceptionExactly<DivideByZeroException>().WithMessage("*Dark Side*");
         }
 
         #region Helpers

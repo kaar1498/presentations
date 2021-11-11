@@ -31,7 +31,7 @@ namespace Exercises
             var result = new[] { 41, 42, 43 };
 
             // Assert
-            result.Should().BeEquivalentTo(expected);
+            result.Should().Equal(expected);
         }
 
         [Fact]
@@ -53,7 +53,8 @@ namespace Exercises
             Person[] result = GetPersons();
 
             // Assert
-            result.Should().NotContainEquivalentOf(expected);
+            result.Should().NotContainEquivalentOf(expected); //Lambda expression med equal
+            //EquivalentToopt => opt exclude propertieres includeing
         }
 
         [Fact]
@@ -79,7 +80,7 @@ namespace Exercises
             var result = GetObjects();
 
             // Assert
-            //result.Should().Contain(expected
+            result.Should().ContainSingle(o => o.Equals(expected));
         }
 
         [Fact]
@@ -112,6 +113,8 @@ namespace Exercises
 
             objects[0].Should().BeOfType<string>().Which.Length.Should().Be(expectedLength);
             objects[1].Should().Be(expectedNumber);
+            //SatisfyRespectively
+            //This is no the best way to teach someone about SatisfyRespectively
         }
 
         [Fact]
@@ -124,7 +127,7 @@ namespace Exercises
             object[] objects = GetRandomObjects();
 
             // Assert
-            objects.Should().BeEquivalentTo(expected);
+            objects.Should().BeEquivalentTo(expected); //WithoutStrict Ordering opt
         }
 
         [Fact]
@@ -137,7 +140,7 @@ namespace Exercises
             object[] objects = GetObjects();
 
             // Assert
-            objects.Should().BeEquivalentTo(expectedNumbers);
+            objects.Should().BeEquivalentTo(expectedNumbers); //WithStrict Ordering opt
         }
 
         #region Helpers

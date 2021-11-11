@@ -16,7 +16,7 @@ namespace Exercises
             string starSign = person.GetStarSign();
 
             // Assert
-            person.GetStarSign().Should().NotBe(null);
+            person.GetStarSign().Should().NotBe(null); //Could use NotBeEmpty()
         }
 
         [Fact]
@@ -55,7 +55,7 @@ namespace Exercises
             string alphabet = GetDanishAlphabeth();
 
             // Assert
-            alphabet.Length.Should().Be(expectedLength);
+            alphabet.Length.Should().Be(expectedLength); //HaveLength instead
         }
 
         [Fact]
@@ -66,6 +66,7 @@ namespace Exercises
 
             // Assert
             errorMessage.Should().MatchRegex(".*Foo.*Bar.*");
+            //Split should, containinorder
         }
 
         #region Helpers

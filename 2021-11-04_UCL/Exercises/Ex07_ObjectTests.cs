@@ -23,7 +23,7 @@ namespace Exercises
             Person result = GetPerson();
 
             // Assert
-            result.Should().BeOfType(expected.GetType()).And.BeEquivalentTo(result);
+            result.Should().BeOfType(expected.GetType()).And.BeEquivalentTo(result); //Idk
         }
 
         [Fact]
@@ -58,7 +58,7 @@ namespace Exercises
             ISuperComputer computer = GetSuperComputer();
 
             // Assert
-            computer.Should().BeEquivalentTo(expected);
+            computer.Should().NotBeEquivalentTo(expected); //options Respecting RunTimeTypes
         }
 
         [Fact]
@@ -115,7 +115,9 @@ namespace Exercises
             object mappedModel = ModelMapper.Map(dasModel);
 
             // Assert
-            dasModel.Should().BeEquivalentTo(mappedModel, options => options.Using<DateTime>(ctx => ctx.Subject.Should().BeCloseTo(ctx.Expectation, 1.Seconds())).WhenTypeIs<DateTime>());
+            dasModel.Should().BeEquivalentTo(mappedModel,
+                options => options.Using<DateTime>(
+                    ctx => ctx.Subject.Should().BeCloseTo(ctx.Expectation, 1.Seconds())).WhenTypeIs<DateTime>());
         }
 
         [Fact]
